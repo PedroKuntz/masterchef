@@ -1,6 +1,7 @@
 package com.ello.masterchef.catalog.model;
 
 import com.ello.masterchef.integration.Entity;
+import com.ello.masterchef.integration.Rule;
 
 import java.util.List;
 import java.util.UUID;
@@ -17,6 +18,7 @@ public class CatalogItem implements Entity {
   private int amount;
   private double kg;
   private List<CatalogItem> parentCatalogItems;
+  private List<Rule> rules;
 
   public CatalogItem() {}
 
@@ -108,5 +110,13 @@ public class CatalogItem implements Entity {
   public CatalogItem setParentCatalogItems(List<CatalogItem> parentCatalogItems) {
     this.parentCatalogItems = parentCatalogItems;
     return this;
+  }
+
+  public List<Rule> getRules() {
+    return rules;
+  }
+
+  public void setRules(List<Rule> rules) {
+    this.rules = rules;
   }
 }
