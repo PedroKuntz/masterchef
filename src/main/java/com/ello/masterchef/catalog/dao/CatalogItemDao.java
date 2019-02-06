@@ -1,12 +1,14 @@
 package com.ello.masterchef.catalog.dao;
 
 import com.ello.masterchef.catalog.model.CatalogItem;
+import com.ello.masterchef.catalog.model.mapper.CatalogItemRowMapper;
 import com.ello.masterchef.catalog.model.mapper.CompactCatalogItemRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.UUID;
 
 @Repository
 public class CatalogItemDao {
@@ -24,6 +26,10 @@ public class CatalogItemDao {
 
   public List<CatalogItem> findAllFirstLevel() {
     return jdbcTemplate.query("SELECT catalog_item_id, item_id, name_item, description, catalog_item_type, level FROM chef.catalog_item WHERE catalog_item_type IN ('UNIT','UNIT_PARENT')", new CompactCatalogItemRowMapper());
+  }
+
+  public CatalogItem findById(UUID catalogItemId) {
+    return jdbcTemplate.queryForObject("SELECT catalog_item_id, item_id, name_item, description, catalog_item_type, level FROM chef.catalog_item WHERE catalog_item_id = ?",new UUID[] {catalogItemId}, new CompactCatalogItemRowMapper())
   }
 
 }

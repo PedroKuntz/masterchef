@@ -1,4 +1,4 @@
-package com.ello.masterchef.sales.configuration;
+package com.ello.masterchef.integration.configuration;
 
 import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;

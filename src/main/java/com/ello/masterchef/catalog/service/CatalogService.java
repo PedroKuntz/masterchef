@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class CatalogService {
@@ -23,6 +24,10 @@ public class CatalogService {
 
   public List<CatalogItem> findAllCatalogItemFirstLevel() {
     return catalogItemDao.findAllFirstLevel();
+  }
+
+  public CatalogItem findById(UUID catalogItemId) {
+    return catalogItemDao.findById(catalogItemId);
   }
 
 }
