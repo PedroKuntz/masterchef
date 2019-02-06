@@ -14,14 +14,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.function.Function;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
+
+import static java.util.Optional.empty;
+import static java.util.Optional.of;
 
 @Service
 public class PurchaseOrderService {
@@ -46,43 +45,20 @@ public class PurchaseOrderService {
   }
 
   public void sendPurchaseOrder(UUID cartId) {
+    List<PurchaseOrderItem> purchaseOrderItems = new ArrayList<>();
     //Get Cart in Redis
     Cart cart = cartService.findCartById(cartId);
-    //Create PurchaseOrderItem
-
-    List<PurchaseOrderItem> itemsFirstLevel = cart.getPurchaseOrderItemDraftList().stream().filter(poi -> poi.getLevel() == 1).map(poi -> buildPurchaseOrderItem(poi, cart)).collect(Collectors.toList());
-    itemsFirstLevel.stream().forEach(it -> {
-
-    });
-
-    List<PurchaseOrderItemDraft> subItemsCatalogItemId = cart.getPurchaseOrderItemDraftList().stream().map(poi -> poi.getSubItemsId()).flatMap(id -> id.stream()).collect(Collectors.toList());
-    // Create PurchaseOrderItem second level
-    List<PurchaseOrderItem> subItems = buildPurchaseOrderItems(cart, subItemsCatalogItemId);
-
-
-
-
-
-    // Create PurchaseOrderItem first level
+    cart.getPurchaseOrderItemDraftList()
+      .forEach(draft -> {
+        PurchaseOrderItem purchaseOrderItem = buildPurchaseOrderItem(draft, cart, empty());
+        List<PurchaseOrderItem> subItems = draft.getSubItemsId().stream().map(sub -> buildPurchaseOrderItem(sub, cart, of(purchaseOrderItem.getPurchaseOrderItemId()))).collect(Collectors.toList());
+        purchaseOrderItems.add(purchaseOrderItem);
+        purchaseOrderItems.addAll(subItems);
+      });
 
     PurchaseOrder purchaseOrder = findPurchaseOrderById(cart.getPurchaseOrderId());
     purchaseOrder.setPurchaseOrderItems(purchaseOrderItems);
     //Notifica cozinha
-  }
-
-  private List<PurchaseOrderItem> buildPurchaseOrderItemFirstLevel(Cart cart) {
-    return cart.getPurchaseOrderItemDraftList()
-      .stream()
-      .filter(poi -> poi.getLevel() == 2)
-      .map(poi -> buildPurchaseOrderItem(poi, cart, ))
-      .collect(Collectors.toList());
-  }
-
-  private List<PurchaseOrderItem> buildPurchaseOrderItems(Cart cart, List<PurchaseOrderItemDraft> purchaseOrderItemDrafts) {
-    return purchaseOrderItemDrafts
-      .stream()
-      .map(poi -> buildPurchaseOrderItem(poi, cart))
-      .collect(Collectors.toList());
   }
 
   public List<PurchaseOrderItem> findPurchaseOrderItemsByPurchaseOrderId(UUID purchaseOrderId) {
@@ -101,21 +77,18 @@ public class PurchaseOrderService {
     return purchaseOrder;
   }
 
-  private PurchaseOrderItem buildPurchaseOrderItem(PurchaseOrderItemDraft purchaseOrderItemDraft, Cart cart) {
+  private PurchaseOrderItem buildPurchaseOrderItem(PurchaseOrderItemDraft purchaseOrderItemDraft, Cart cart, Optional<UUID> parentId) {
     PurchaseOrderItem purchaseOrderItem = new PurchaseOrderItem();
     purchaseOrderItem.setPurchaseOrderItemId(UUID.randomUUID());
     purchaseOrderItem.setCatalogItemId(purchaseOrderItemDraft.getCatalogItemId());
     purchaseOrderItem.setPurchaseOrderItemState(new InProgressOrderItemState());
-    purchaseOrderItem.setPurchaseOrderItemType(PurchaseOrderItemType(purchaseOrderItemDraft.getCatalogItemType().getValue()));
+    purchaseOrderItem.setPurchaseOrderItemType(PurchaseOrderItemType.valueOf(purchaseOrderItemDraft.getCatalogItemType().getValue()));
     purchaseOrderItem.setPrice(purchaseOrderItemDraft.getPrice());
     purchaseOrderItem.setAmount(purchaseOrderItemDraft.getAmount());
     purchaseOrderItem.setKg(purchaseOrderItemDraft.getKg());
+    purchaseOrderItem.setPurchaseOrderItemParentId(parentId);
     this.purchaseOrderItemDao.save(cart.getPurchaseOrderId(),purchaseOrderItem);
     return purchaseOrderItem;
-  }
-
-  private PurchaseOrderItem updatePurchaseOrderItemParent(PurchaseOrderItem purchaseOrderItem) {
-    this.purchaseOrderItemDao.updateSubItems()
   }
 
   private PurchaseOrder findPurchaseOrderById(UUID purchaseOrderId) {
