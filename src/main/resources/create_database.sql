@@ -9,7 +9,8 @@ CREATE TABLE `chef`.`catalog_item` (
   `catalog_item_type` VARCHAR(45) NULL,
   `amount` INT NULL,
   `kg` DOUBLE NULL,
-  `sales_model_catalog_item_id` VARCHAR(45) NOT NULL,
+  `level` INT NOT NULL,
+  `channel_catalog_item_id` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`catalog_item_id`));
 
 CREATE TABLE `chef`.`catalog_item_parent` (
@@ -18,7 +19,7 @@ CREATE TABLE `chef`.`catalog_item_parent` (
 
 CREATE TABLE `chef`.`sales_price` (
   `sales_price_id` VARCHAR(45) NOT NULL,
-  `sales_model_id` VARCHAR(45) NOT NULL,
+  `channel_id` VARCHAR(45) NOT NULL,
   `price` DOUBLE NOT NULL,
   `sales_rule_id` VARCHAR(45) NOT NULL,
   `catalog_item_id` VARCHAR(45) NOT NULL,
@@ -39,8 +40,34 @@ CREATE TABLE `chef`.`sales_rules` (
   `description` VARCHAR(45) NULL,
   PRIMARY KEY (`sales_rules_id`));
 
-CREATE TABLE `chef`.`sales_model_catalog_item` (
+CREATE TABLE `chef`.`channel_catalog_item` (
   `sales_price_catalog_item_id` VARCHAR(45) NOT NULL,
-  `sales_model_id` VARCHAR(45) NOT NULL,
+  `channel_id` VARCHAR(45) NOT NULL,
   `catalog_item_id` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`sales_price_catalog_item_id`));
+
+
+
+-- ORDER
+
+
+CREATE TABLE `chef`.`purchase_order` (
+  `purchase_order_id` VARCHAR(45) NOT NULL,
+  `employee_id` VARCHAR(45) NOT NULL,
+  `purchase_order_type` VARCHAR(45) NOT NULL,
+  `channel` VARCHAR(45) NOT NULL,
+  `purchase_order_state` VARCHAR(45) NOT NULL,
+  `total_price` DOUBLE NOT NULL,
+  PRIMARY KEY (`purchase_order_id`));
+
+CREATE TABLE `chef`.`purchase_order_item` (
+  `purchase_order_item_id` VARCHAR(45) NOT NULL,
+  `catalog_item_id` VARCHAR(45) NOT NULL,
+  `purchase_order_id` VARCHAR(45) NOT NULL,
+  `purchase_order_item_state` VARCHAR(45) NOT NULL,
+  `purchase_order_item_type` VARCHAR(45) NOT NULL,
+  `purchase_order_item_parent_id` VARCHAR(45) NULL,
+  `price` DOUBLE NOT NULL,
+  `amount` INT NULL,
+  `kg` DOUBLE NULL,
+  PRIMARY KEY (`purchase_order_item_id`));

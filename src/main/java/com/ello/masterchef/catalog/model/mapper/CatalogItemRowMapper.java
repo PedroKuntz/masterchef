@@ -18,7 +18,6 @@ public class CatalogItemRowMapper implements RowMapper<CatalogItem> {
     catalogItem.setNameItem(row.getString("name_item"));
     catalogItem.setDescription(row.getString("description"));
     catalogItem.setCatalogItemType(CatalogItemType.valueOf(row.getString("catalog_item_type")));
-    catalogItem.setParentCatalogItems()
     return catalogItem;
   }
 }

@@ -7,7 +7,7 @@ import java.util.UUID;
 public class SalesPrice implements Entity {
 
   private UUID salesPriceId;
-  private SalesModel salesModel;
+  private Channel channel;
   private Double price;
   private SalesRules salesRules;
 
@@ -22,12 +22,12 @@ public class SalesPrice implements Entity {
     return this;
   }
 
-  public SalesModel getSalesModel() {
-    return salesModel;
+  public Channel getChannel() {
+    return channel;
   }
 
-  public SalesPrice setSalesModel(SalesModel salesModel) {
-    this.salesModel = salesModel;
+  public SalesPrice setChannel(Channel channel) {
+    this.channel = channel;
     return this;
   }
 

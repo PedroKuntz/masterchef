@@ -17,8 +17,9 @@ public class CatalogItem implements Entity {
   private List<SalesPrice> salesPrice;
   private int amount;
   private double kg;
-  private List<CatalogItem> parentCatalogItems;
+  private List<CatalogItem> catalogItemsParent;
   private List<Rule> rules;
+  private int level;
 
   public CatalogItem() {}
 
@@ -103,12 +104,12 @@ public class CatalogItem implements Entity {
     return this;
   }
 
-  public List<CatalogItem> getParentCatalogItems() {
-    return parentCatalogItems;
+  public List<CatalogItem> getCatalogItemsParent() {
+    return catalogItemsParent;
   }
 
-  public CatalogItem setParentCatalogItems(List<CatalogItem> parentCatalogItems) {
-    this.parentCatalogItems = parentCatalogItems;
+  public CatalogItem setCatalogItemsParent(List<CatalogItem> catalogItemsParent) {
+    this.catalogItemsParent = catalogItemsParent;
     return this;
   }
 
@@ -118,5 +119,14 @@ public class CatalogItem implements Entity {
 
   public void setRules(List<Rule> rules) {
     this.rules = rules;
+  }
+
+  public int getLevel() {
+    return level;
+  }
+
+  public CatalogItem setLevel(int level) {
+    this.level = level;
+    return this;
   }
 }

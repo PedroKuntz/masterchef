@@ -1,6 +1,6 @@
 package com.ello.masterchef.sales.model;
 
-import com.ello.masterchef.catalog.model.SalesModel;
+import com.ello.masterchef.catalog.model.Channel;
 import com.ello.masterchef.integration.Entity;
 import com.ello.masterchef.integration.State;
 
@@ -13,8 +13,9 @@ public class PurchaseOrder implements Entity {
   private UUID employeeId;
   private List<PurchaseOrderItem> purchaseOrderItems;
   private PurchaseOrderType purchaseOrderType;
-  private SalesModel salesModel;
+  private Channel channel;
   private State<PurchaseOrder> purchaseOrderState;
+  private Double totalPrice;
 
   public PurchaseOrder() {}
 
@@ -54,12 +55,12 @@ public class PurchaseOrder implements Entity {
     return this;
   }
 
-  public SalesModel getSalesModel() {
-    return salesModel;
+  public Channel getChannel() {
+    return channel;
   }
 
-  public PurchaseOrder setSalesModel(SalesModel salesModel) {
-    this.salesModel = salesModel;
+  public PurchaseOrder setChannel(Channel channel) {
+    this.channel = channel;
     return this;
   }
 
@@ -69,6 +70,24 @@ public class PurchaseOrder implements Entity {
 
   public PurchaseOrder setPurchaseOrderState(State<PurchaseOrder> purchaseOrderState) {
     this.purchaseOrderState = purchaseOrderState;
+    return this;
+  }
+
+  public UUID getEmployeeId() {
+    return employeeId;
+  }
+
+  public PurchaseOrder setEmployeeId(UUID employeeId) {
+    this.employeeId = employeeId;
+    return this;
+  }
+
+  public Double getTotalPrice() {
+    return totalPrice;
+  }
+
+  public PurchaseOrder setTotalPrice(Double totalPrice) {
+    this.totalPrice = totalPrice;
     return this;
   }
 }

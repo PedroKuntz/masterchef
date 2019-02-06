@@ -6,4 +6,6 @@ public interface State<T> {
   void prev(T t);
   void notify(T t);
 
+  String getValue();
+
 }

@@ -7,33 +7,34 @@ import java.util.UUID;
 
 public class Cart implements Entity {
 
-    private UUID cartId;
-    private UUID purchaseOrderId;
-    private List<PurchaseOrderItemDraft> purchaseOrderItemDraftList;
+  private UUID cartId;
+  private UUID purchaseOrderId;
+  private List<PurchaseOrderItemDraft> purchaseOrderItemDraftList;
 
-    public Cart() {}
+  public Cart() {
+  }
 
-    public UUID getCartId() {
-        return cartId;
-    }
+  public UUID getCartId() {
+    return cartId;
+  }
 
-    public void setCartId(UUID cartId) {
-        this.cartId = cartId;
-    }
+  public void setCartId(UUID cartId) {
+    this.cartId = cartId;
+  }
 
-    public UUID getPurchaseOrderId() {
-        return purchaseOrderId;
-    }
+  public UUID getPurchaseOrderId() {
+    return purchaseOrderId;
+  }
 
-    public void setPurchaseOrderId(UUID purchaseOrderId) {
-        this.purchaseOrderId = purchaseOrderId;
-    }
+  public void setPurchaseOrderId(UUID purchaseOrderId) {
+    this.purchaseOrderId = purchaseOrderId;
+  }
 
-    public List<PurchaseOrderItemDraft> getPurchaseOrderItemDraftList() {
-        return purchaseOrderItemDraftList;
-    }
+  public List<PurchaseOrderItemDraft> getPurchaseOrderItemDraftList() {
+    return purchaseOrderItemDraftList;
+  }
 
-    public void setPurchaseOrderItemDraftList(List<PurchaseOrderItemDraft> purchaseOrderItemDraftList) {
-        this.purchaseOrderItemDraftList = purchaseOrderItemDraftList;
-    }
+  public void setPurchaseOrderItemDraftList(List<PurchaseOrderItemDraft> purchaseOrderItemDraftList) {
+    this.purchaseOrderItemDraftList = purchaseOrderItemDraftList;
+  }
 }

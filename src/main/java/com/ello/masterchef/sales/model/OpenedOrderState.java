@@ -2,9 +2,9 @@ package com.ello.masterchef.sales.model;
 
 import com.ello.masterchef.integration.State;
 
-import static com.ello.masterchef.integration.StateConstants.CLOSED_ORDER_STATE;
+import static com.ello.masterchef.integration.StateConstants.OPENED_ORDER_STATE;
 
-public class ClosedOrderState implements State<PurchaseOrder> {
+public class OpenedOrderState implements State<PurchaseOrder> {
 
   @Override
   public void next(PurchaseOrder purchaseOrder) {
@@ -23,6 +23,6 @@ public class ClosedOrderState implements State<PurchaseOrder> {
 
   @Override
   public String getValue() {
-    return CLOSED_ORDER_STATE;
+    return OPENED_ORDER_STATE;
   }
 }

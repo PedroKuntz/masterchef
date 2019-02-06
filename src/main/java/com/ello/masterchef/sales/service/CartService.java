@@ -10,18 +10,17 @@ import java.util.UUID;
 public class CartService {
 
 
-    public Cart createCart(UUID purchaseOrderId) {
-        return new Cart();
-    }
+  public Cart createCart(UUID purchaseOrderId) {
+    return new Cart();
+  }
 
-    public void addCatalogItemInCart(UUID cartId, PurchaseOrderItemDraft purchaseOrderItemDraft) {
+  public void addCatalogItemInCart(UUID cartId, PurchaseOrderItemDraft purchaseOrderItemDraft) {
 
-    }
+  }
 
-    public Cart findCartById(UUID cartId) {
-        return new Cart();
-    }
-
+  public Cart findCartById(UUID cartId) {
+    return new Cart();
+  }
 
 
 }

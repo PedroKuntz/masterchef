@@ -10,7 +10,7 @@ public class PurchaseOrderItem implements Entity {
 
   private UUID purchaseOrderItemId;
   private UUID catalogItemId;
-  private State<PurchaseOrderItem> purchaseOrderItemStateState;
+  private State<PurchaseOrderItem> purchaseOrderItemState;
   private PurchaseOrderItemType purchaseOrderItemType;
   private Optional<UUID> purchaseOrderItemParentId;
   private Double price;
@@ -37,12 +37,12 @@ public class PurchaseOrderItem implements Entity {
     return this;
   }
 
-  public State<PurchaseOrderItem> getPurchaseOrderItemStateState() {
-    return purchaseOrderItemStateState;
+  public State<PurchaseOrderItem> getPurchaseOrderItemState() {
+    return purchaseOrderItemState;
   }
 
-  public PurchaseOrderItem setPurchaseOrderItemStateState(State<PurchaseOrderItem> purchaseOrderItemStateState) {
-    this.purchaseOrderItemStateState = purchaseOrderItemStateState;
+  public PurchaseOrderItem setPurchaseOrderItemState(State<PurchaseOrderItem> purchaseOrderItemStateState) {
+    this.purchaseOrderItemState = purchaseOrderItemStateState;
     return this;
   }
 

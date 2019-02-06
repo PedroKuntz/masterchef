@@ -2,7 +2,7 @@ package com.ello.masterchef;
 
 import com.ello.masterchef.catalog.model.CatalogItem;
 import com.ello.masterchef.catalog.model.CatalogItemType;
-import com.ello.masterchef.catalog.model.SalesModel;
+import com.ello.masterchef.catalog.model.Channel;
 import com.ello.masterchef.catalog.model.SalesPrice;
 import com.ello.masterchef.catalog.model.SalesRules;
 import org.junit.Test;
@@ -10,8 +10,6 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.UUID;
 
@@ -27,7 +25,7 @@ public class MasterchefApplicationTests {
 
 		SalesPrice salesPrice = new SalesPrice();
 		salesPrice.setSalesPriceId(UUID.randomUUID());
-		salesPrice.setSalesModel(SalesModel.LIVRE);
+		salesPrice.setChannel(Channel.LIVRE);
 		salesPrice.setSalesRules(salesRules);
 		salesPrice.setPrice(64.9);
 

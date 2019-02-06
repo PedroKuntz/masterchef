@@ -13,7 +13,10 @@ public class PurchaseOrderItemDraft implements Entity {
     private String description;
     private Double price;
     private CatalogItemType catalogItemType;
-    private List<UUID> subItemsId;
+    private List<PurchaseOrderItemDraft> subItemsId;
+    private int amount;
+    private double kg;
+    private int level;
 
     public PurchaseOrderItemDraft() {}
 
@@ -33,11 +36,11 @@ public class PurchaseOrderItemDraft implements Entity {
         this.catalogItemType = catalogItemType;
     }
 
-    public List<UUID> getSubItemsId() {
+    public List<PurchaseOrderItemDraft> getSubItemsId() {
         return subItemsId;
     }
 
-    public void setSubItemsId(List<UUID> subItemsId) {
+    public void setSubItemsId(List<PurchaseOrderItemDraft> subItemsId) {
         this.subItemsId = subItemsId;
     }
 
@@ -63,5 +66,32 @@ public class PurchaseOrderItemDraft implements Entity {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public PurchaseOrderItemDraft setAmount(int amount) {
+        this.amount = amount;
+        return this;
+    }
+
+    public double getKg() {
+        return kg;
+    }
+
+    public PurchaseOrderItemDraft setKg(double kg) {
+        this.kg = kg;
+        return this;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public PurchaseOrderItemDraft setLevel(int level) {
+        this.level = level;
+        return this;
     }
 }

@@ -2,6 +2,8 @@ package com.ello.masterchef.sales.model;
 
 import com.ello.masterchef.integration.State;
 
+import static com.ello.masterchef.integration.StateConstants.IN_PROGRESS_ORDER_ITEM_STATE;
+
 public class InProgressOrderItemState implements State<PurchaseOrderItem> {
 
   public InProgressOrderItemState() {}
@@ -19,5 +21,10 @@ public class InProgressOrderItemState implements State<PurchaseOrderItem> {
   @Override
   public void notify(PurchaseOrderItem orderItem) {
 
+  }
+
+  @Override
+  public String getValue() {
+    return IN_PROGRESS_ORDER_ITEM_STATE;
   }
 }

@@ -19,11 +19,11 @@ public class CatalogItemDao {
   }
 
   public List<CatalogItem> findAll() {
-    return jdbcTemplate.query("SELECT catalog_item_id, item_id, name_item, description, catalog_item_type FROM chef.catalog_item", new CompactCatalogItemRowMapper());
+    return jdbcTemplate.query("SELECT catalog_item_id, item_id, name_item, description, catalog_item_type, level FROM chef.catalog_item", new CompactCatalogItemRowMapper());
   }
 
   public List<CatalogItem> findAllFirstLevel() {
-    return jdbcTemplate.query("SELECT catalog_item_id, item_id, name_item, description, catalog_item_type FROM chef.catalog_item WHERE catalog_item_type IN ('UNIT','UNIT_PARENT')", new CompactCatalogItemRowMapper());
+    return jdbcTemplate.query("SELECT catalog_item_id, item_id, name_item, description, catalog_item_type, level FROM chef.catalog_item WHERE catalog_item_type IN ('UNIT','UNIT_PARENT')", new CompactCatalogItemRowMapper());
   }
 
 }
