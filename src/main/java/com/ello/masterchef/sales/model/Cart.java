@@ -37,4 +37,8 @@ public class Cart implements Entity {
   public void setPurchaseOrderItemDraftList(List<PurchaseOrderItemDraft> purchaseOrderItemDraftList) {
     this.purchaseOrderItemDraftList = purchaseOrderItemDraftList;
   }
+
+  public void setPurchaseOrderItemDraft(PurchaseOrderItemDraft purchaseOrderItemDraft) {
+    this.purchaseOrderItemDraftList.add(purchaseOrderItemDraft);
+  }
 }
