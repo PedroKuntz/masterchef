@@ -1,6 +1,6 @@
 package com.ello.masterchef.sales.model;
 
-import com.ello.masterchef.integration.State;
+import com.ello.masterchef.commons.model.State;
 
 import static com.ello.masterchef.integration.StateConstants.OPENED_ORDER_STATE;
 

@@ -1,7 +1,7 @@
 package com.ello.masterchef.sales.model;
 
-import com.ello.masterchef.integration.Entity;
-import com.ello.masterchef.integration.State;
+import com.ello.masterchef.commons.model.Entity;
+import com.ello.masterchef.commons.model.State;
 
 import java.util.Optional;
 import java.util.UUID;

@@ -1,6 +1,6 @@
 package com.ello.masterchef.catalog.model;
 
-import com.ello.masterchef.integration.Entity;
+import com.ello.masterchef.commons.model.Entity;
 
 import java.util.UUID;
 

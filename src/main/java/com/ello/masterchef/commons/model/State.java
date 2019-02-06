@@ -1,4 +1,4 @@
-package com.ello.masterchef.integration;
+package com.ello.masterchef.commons.model;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 

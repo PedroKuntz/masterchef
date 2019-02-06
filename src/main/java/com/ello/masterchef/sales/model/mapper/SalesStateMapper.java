@@ -1,6 +1,6 @@
 package com.ello.masterchef.sales.model.mapper;
 
-import com.ello.masterchef.integration.State;
+import com.ello.masterchef.commons.model.State;
 import com.ello.masterchef.sales.model.ClosedOrderState;
 import com.ello.masterchef.sales.model.DeliveryOrderItemState;
 import com.ello.masterchef.sales.model.InProgressOrderItemState;

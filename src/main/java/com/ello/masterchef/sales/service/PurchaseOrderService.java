@@ -50,7 +50,7 @@ public class PurchaseOrderService {
 
   public void sendPurchaseOrder(UUID cartId) {
     List<PurchaseOrderItem> purchaseOrderItems = new ArrayList<>();
-    //Get Cart in Redis
+    //Get Cart in Hazelcast
     Cart cart = cartService.findCartById(cartId);
     cart.getPurchaseOrderItemDraftList()
       .forEach(draft -> {
@@ -63,6 +63,7 @@ public class PurchaseOrderService {
     PurchaseOrder purchaseOrder = findPurchaseOrderById(cart.getPurchaseOrderId());
     purchaseOrder.setPurchaseOrderItems(purchaseOrderItems);
     //Notifica cozinha
+
   }
 
   public List<PurchaseOrderItem> findPurchaseOrderItemsByPurchaseOrderId(UUID purchaseOrderId) {

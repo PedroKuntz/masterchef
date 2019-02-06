@@ -1,7 +1,7 @@
 package com.ello.masterchef.catalog.model;
 
-import com.ello.masterchef.integration.Entity;
-import com.ello.masterchef.integration.Rule;
+import com.ello.masterchef.commons.model.Entity;
+import com.ello.masterchef.commons.model.Rule;
 
 import java.util.List;
 import java.util.UUID;
