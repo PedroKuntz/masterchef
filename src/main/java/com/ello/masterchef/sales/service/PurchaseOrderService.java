@@ -38,6 +38,10 @@ public class PurchaseOrderService {
     this.cartService = cartService;
   }
 
+  public List<PurchaseOrder> findAll() {
+    return purchaseOrderDao.findAll();
+  }
+
   public PurchaseOrder createPurchaseOrder(PurchaseOrderRequest purchaseOrderRequest) {
     PurchaseOrder purchaseOrder = buildPurchaseOrder(purchaseOrderRequest);
     purchaseOrderDao.save(purchaseOrder);

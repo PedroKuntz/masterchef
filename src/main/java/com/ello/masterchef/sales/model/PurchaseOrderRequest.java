@@ -1,14 +1,18 @@
 package com.ello.masterchef.sales.model;
 
 import com.ello.masterchef.catalog.model.Channel;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
 import java.util.UUID;
 
 public class PurchaseOrderRequest implements Serializable {
 
+  @JsonProperty("employeeId")
   private UUID employeeId;
+  @JsonProperty("purchaseOrderType")
   private PurchaseOrderType purchaseOrderType;
+  @JsonProperty("channel")
   private Channel channel;
 
   public PurchaseOrderRequest() {}

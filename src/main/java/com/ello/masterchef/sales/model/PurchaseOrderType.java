@@ -1,5 +1,7 @@
 package com.ello.masterchef.sales.model;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+
 public enum PurchaseOrderType {
 
   BALCONY("BALCAO"),
@@ -13,6 +15,7 @@ public enum PurchaseOrderType {
     this.value = value;
   }
 
+  @JsonValue
   public String getValue() {
     return this.value;
   }

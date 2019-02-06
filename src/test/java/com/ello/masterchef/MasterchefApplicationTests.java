@@ -25,7 +25,7 @@ public class MasterchefApplicationTests {
 
 		SalesPrice salesPrice = new SalesPrice();
 		salesPrice.setSalesPriceId(UUID.randomUUID());
-		salesPrice.setChannel(Channel.LIVRE);
+		salesPrice.setChannel(Channel.FREE);
 		salesPrice.setSalesRules(salesRules);
 		salesPrice.setPrice(64.9);
 

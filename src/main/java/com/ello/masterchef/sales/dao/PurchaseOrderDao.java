@@ -7,8 +7,10 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.UUID;
 
+import static com.ello.masterchef.sales.dao.SalesQueryLanguage.FIND_ALL_PURCHASE_ORDER;
 import static com.ello.masterchef.sales.dao.SalesQueryLanguage.FIND_PURCHASE_ORDER_BY_ID;
 
 @Repository
@@ -30,6 +32,10 @@ public class PurchaseOrderDao {
       purchaseOrder.getChannel(),
       purchaseOrder.getPurchaseOrderState().getValue(),
       purchaseOrder.getTotalPrice());
+  }
+
+  public List<PurchaseOrder> findAll() {
+    return jdbcTemplate.query(FIND_ALL_PURCHASE_ORDER, new PurchaseOrderRowMapper());
   }
 
   public PurchaseOrder findById(UUID purchaseOrderId) {

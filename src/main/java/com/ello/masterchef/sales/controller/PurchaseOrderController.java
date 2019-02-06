@@ -35,6 +35,11 @@ public class PurchaseOrderController {
     return new ResponseEntity(HttpStatus.CREATED);
   }
 
+  @GetMapping
+  public ResponseEntity<?> getAllPurchaseOrder() {
+    return new ResponseEntity(purchaseOrderService.findAll(), HttpStatus.OK);
+  }
+
   @GetMapping(value = "/{purchaseOrderId}/purchaseOrderItems")
   public ResponseEntity<?> getAllItemsByPurchaseOrderId(@RequestParam("purchaseOrderId") UUID purchaseOrderId) {
     List<PurchaseOrderItem> purchaseOrderItems = purchaseOrderService.findPurchaseOrderItemsByPurchaseOrderId(purchaseOrderId);

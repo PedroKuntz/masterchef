@@ -2,6 +2,16 @@ package com.ello.masterchef.sales.dao;
 
 public class SalesQueryLanguage {
 
+  protected static final String FIND_ALL_PURCHASE_ORDER =
+    "SELECT " +
+      "purchase_order_id, " +
+      "employee_id, " +
+      "purchase_order_state, " +
+      "purchase_order_type, " +
+      "channel, " +
+      "total_price " +
+      "FROM purchase_order ";
+
   protected static final String FIND_PURCHASE_ORDER_BY_ID =
     "SELECT " +
       "purchase_order_id, " +

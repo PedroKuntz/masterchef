@@ -1,11 +1,16 @@
 package com.ello.masterchef.integration;
 
-public interface State<T> {
+import com.fasterxml.jackson.annotation.JsonValue;
+
+import java.io.Serializable;
+
+public interface State<T> extends Serializable {
 
   void next(T t);
   void prev(T t);
   void notify(T t);
 
+  @JsonValue
   String getValue();
 
 }
