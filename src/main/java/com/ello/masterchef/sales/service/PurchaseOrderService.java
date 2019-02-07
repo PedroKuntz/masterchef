@@ -1,15 +1,9 @@
 package com.ello.masterchef.sales.service;
 
+import com.ello.masterchef.integration.IntegrationService;
 import com.ello.masterchef.sales.dao.PurchaseOrderDao;
 import com.ello.masterchef.sales.dao.PurchaseOrderItemDao;
-import com.ello.masterchef.sales.model.Cart;
-import com.ello.masterchef.sales.model.InProgressOrderItemState;
-import com.ello.masterchef.sales.model.OpenedOrderState;
-import com.ello.masterchef.sales.model.PurchaseOrder;
-import com.ello.masterchef.sales.model.PurchaseOrderItem;
-import com.ello.masterchef.sales.model.PurchaseOrderItemDraft;
-import com.ello.masterchef.sales.model.PurchaseOrderItemType;
-import com.ello.masterchef.sales.model.PurchaseOrderRequest;
+import com.ello.masterchef.sales.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,15 +21,15 @@ public class PurchaseOrderService {
 
   private final PurchaseOrderDao purchaseOrderDao;
   private final PurchaseOrderItemDao purchaseOrderItemDao;
-  private final CartService cartService;
+  private final IntegrationService integrationService;
 
   @Autowired
   public PurchaseOrderService(PurchaseOrderDao purchaseOrderDao,
                               PurchaseOrderItemDao purchaseOrderItemDao,
-                              CartService cartService) {
+                              IntegrationService integrationService) {
     this.purchaseOrderDao = purchaseOrderDao;
     this.purchaseOrderItemDao = purchaseOrderItemDao;
-    this.cartService = cartService;
+    this.integrationService = integrationService;
   }
 
   public List<PurchaseOrder> findAll() {
@@ -51,7 +45,7 @@ public class PurchaseOrderService {
   public void sendPurchaseOrder(UUID cartId) {
     List<PurchaseOrderItem> purchaseOrderItems = new ArrayList<>();
     //Get Cart in Hazelcast
-    Cart cart = cartService.findCartById(cartId);
+    Cart cart = integrationService.findCartById(cartId);
     cart.getPurchaseOrderItemDraftList()
       .forEach(draft -> {
         PurchaseOrderItem purchaseOrderItem = buildPurchaseOrderItem(draft, cart, empty());
@@ -63,6 +57,12 @@ public class PurchaseOrderService {
     PurchaseOrder purchaseOrder = findPurchaseOrderById(cart.getPurchaseOrderId());
     purchaseOrder.setPurchaseOrderItems(purchaseOrderItems);
     //Notifica cozinha
+    integrationService.notifyToPrepare(purchaseOrder);
+
+  }
+
+  public void preClosedPurchaseOrder(UUID purchaseOrderId) {
+    PurchaseOrder purchaseOrder = purchaseOrderDao.findById(purchaseOrderId);
 
   }
 
