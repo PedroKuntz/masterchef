@@ -19,11 +19,20 @@ public class PaymentOrderDao {
   }
 
   public void save(PaymentOrder paymentOrder) {
-    jdbcTemplate.update("INSERT INTO payment_order VALUES (?,?,?,?,?)")
+    jdbcTemplate.update("INSERT INTO payment_order VALUES (?,?,?,?,?,?,?)",
+      paymentOrder.getPaymentOrderId(),
+      paymentOrder.getPurchaseOrderId(),
+      paymentOrder.getPaymentOrderState(),
+      paymentOrder.getTotalValue(),
+      paymentOrder.getReduceValue(),
+      paymentOrder.getIncrementValue(),
+      paymentOrder.getTax());
   }
 
-  public void update(PaymentOrder paymentOrder) {
-
+  public void updateState(PaymentOrder paymentOrder) {
+    jdbcTemplate.update("UPDATE payment_order SET payment_order_state = ? WHERE payment_order_id = ?",
+      paymentOrder.getPaymentOrderState(),
+      paymentOrder.getPaymentOrderId());
   }
 
   public PaymentOrder findByPurchaseOrderId(UUID purchaseOrderId) {

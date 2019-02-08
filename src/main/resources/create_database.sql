@@ -88,6 +88,7 @@ CREATE TABLE `chef`.`payment_order` (
 
 CREATE TABLE `chef`.`payment` (
   `payment_id` VARCHAR(200) NOT NULL,
+  `payment_order_id` VARCHAR(200) NOT NULL,
   `payment_method` VARCHAR(200) NOT NULL,
   `value` VARCHAR(200) NOT NULL,
   PRIMARY KEY (`payment_id`));

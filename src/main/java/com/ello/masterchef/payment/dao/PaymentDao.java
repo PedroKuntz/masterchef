@@ -16,7 +16,11 @@ public class PaymentDao {
     }
 
     public void save(UUID paymentOrderId, Payment payment) {
-
+        jdbcTemplate.update("INSERT INTO payment (payment_id, payment_order_id, payment_method, value) VALUES (?,?,?,?)",
+          payment.getPaymentId(),
+          paymentOrderId,
+          payment.getPaymentMethod(),
+          payment.getValue());
     }
 
     public void update(Payment payment) {
