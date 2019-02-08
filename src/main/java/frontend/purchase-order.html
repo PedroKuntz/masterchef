@@ -1,0 +1,151 @@
+<!doctype html>
+<html ng-app="app">
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+          integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.2.3/cytoscape.js"></script>
+
+</head>
+
+<body style="background-color:#f0f2f5" ng-app="orderApp" ng-controller="orderController">
+
+<nav class="navbar-collapse collapse navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand">ELLO Restaurante</a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a ng-click="logout()"><span class="glyphicon glyphicon-log-in" style="font-size: 90%;"></span>
+                Logout</a></li>
+        </ul>
+    </div>
+
+<nav class="navbar-collapse collapse navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#" style="font-size: 90%;"><i class="glyphicon glyphicon-home"></i> Home</a>
+            <a class="navbar-brand" href="#" style="font-size: 90%;"><i class="glyphicon glyphicon-hdd"></i> NEs</a>
+            <a class="navbar-brand" href="#" style="font-size: 90%;"><i class="glyphicon glyphicon-transfer"></i>
+                Networks</a>
+            <a class="navbar-brand" href="#" style="font-size: 90%;"><i class="glyphicon glyphicon-road"></i>
+                Services</a>
+            <a class="navbar-brand" href="#" style="font-size: 90%;"><i class="glyphicon glyphicon-tasks"></i> Control
+                Panel</a>
+        </div>
+
+    </div>
+</nav>
+
+<div class="container-fluid" >
+
+    <h3><strong>PEDIDO</strong></h3>
+    <div class="breadcrumb-wrapper active">
+        <div class="panel-group">
+            <div class="panel panel-default">
+                <div class="panel-body" style="background:#333">
+                    <div class="col-sm-4">
+                        <div class="container-fluid">
+                            <div class="container-fluid">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-8" style="background:#333">
+                        <div class="container-fluid" ng-controller="MyCtrl">
+                            <div class="row" ng-repeat="letters in alphabet | listToMatrix:4">
+                                <div class="col-xs-3" ng-repeat="letter in letters">
+                                    <h1>{{letter}}</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div id="filterModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Modal Header</h4>
+            </div>
+            <div id="cy" class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+</body>
+
+</html>
+
+<script>
+angular.module('orderApp', [])
+.controller('MyCtrl',['$scope', function($scope){
+  $scope.alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+}])
+.filter('listToMatrix', function() {
+    function listToMatrix(list, elementsPerSubArray) {
+        var matrix = [], i, k;
+
+        for (i = 0, k = -1; i < list.length; i++) {
+            if (i % elementsPerSubArray === 0) {
+                k++;
+                matrix[k] = [];
+            }
+
+            matrix[k].push(list[i]);
+        }
+
+        return matrix;
+    }
+    return function(list, elementsPerSubArray) {
+        return listToMatrix(list, elementsPerSubArray);
+    };
+});
+</script>
+
+<style type="text/css">
+	tr:hover td {
+    	background: #c7d4dd !important;
+	}
+
+	tr.highlight td {
+    	background-color: red;
+	}
+
+h1 {
+  font-family: 'Titillium Web', Helvetica, Arial, sans-serif;
+  background-color: #eee;
+  border-radius: 2px;
+  border: 1px solid #ccc;
+  text-align: center;
+  padding: 10px;
+}
+
+
+</style>
+
+
+

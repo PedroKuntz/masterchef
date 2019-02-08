@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body ng-app="myApp">
+<div class="container-fluid" ng-controller="MyCtrl">
+    <div class="row" ng-repeat="letters in alphabet | listToMatrix:4">
+        <div class="col-xs-3" ng-repeat="letter in letters">
+            <h1>{{letter}}</h1>
+        </div>
+    </div>
+</div>
+</body>
+
+<script src=""></script>
+</html>
