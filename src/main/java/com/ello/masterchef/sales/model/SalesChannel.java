@@ -2,13 +2,16 @@ package com.ello.masterchef.sales.model;
 
 import com.ello.masterchef.commons.model.Entity;
 
+import java.util.UUID;
+
 public class SalesChannel implements Entity {
 
   private String identifier;
+  private UUID purchaseOrderId;
   private Channel channel;
-  private boolean isCleared;
-  private boolean isEmpty;
-  private boolean isBlocked;
+  private boolean isCleared = true;
+  private boolean isEmpty = false;
+  private boolean isBlocked = false;
   private String description;
 
   public SalesChannel() {}
@@ -19,6 +22,16 @@ public class SalesChannel implements Entity {
 
   public SalesChannel setIdentifier(String identifier) {
     this.identifier = identifier;
+    return this;
+  }
+
+  public UUID getPurchaseOrderId() {
+    return purchaseOrderId;
+  }
+
+  public SalesChannel setPurchaseOrderId(UUID purchaseOrderId) {
+    this.purchaseOrderId = purchaseOrderId;
+    this.isEmpty = false;
     return this;
   }
 
