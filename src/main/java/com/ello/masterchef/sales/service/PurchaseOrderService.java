@@ -45,21 +45,25 @@ public class PurchaseOrderService {
   public void sendPurchaseOrder(UUID cartId) {
     List<PurchaseOrderItem> purchaseOrderItems = new ArrayList<>();
     //Get Cart in Hazelcast
-    Cart cart = integrationService.findCartById(cartId);
-    cart.getPurchaseOrderItemDraftList()
+    Optional<Cart> cart = integrationService.findCartByIdAndDeleteCart(cartId);
+    cart.ifPresent(c -> {
+
+      c.getPurchaseOrderItemDraftList()
       .forEach(draft -> {
-        PurchaseOrderItem purchaseOrderItem = buildPurchaseOrderItem(draft, cart, empty());
-        List<PurchaseOrderItem> subItems = draft.getSubItemsId().stream().map(sub -> buildPurchaseOrderItem(sub, cart, of(purchaseOrderItem.getPurchaseOrderItemId()))).collect(Collectors.toList());
+
+        PurchaseOrderItem purchaseOrderItem = buildPurchaseOrderItem(draft, c, empty());
+        List<PurchaseOrderItem> subItems = draft.getSubItemsId().stream().map(sub -> buildPurchaseOrderItem(sub, c, of(purchaseOrderItem.getPurchaseOrderItemId()))).collect(Collectors.toList());
         purchaseOrderItems.add(purchaseOrderItem);
         purchaseOrderItems.addAll(subItems);
+
       });
 
-    PurchaseOrder purchaseOrder = findPurchaseOrderById(cart.getPurchaseOrderId());
-    purchaseOrder.setPurchaseOrderItems(purchaseOrderItems);
-    //Notifica cozinha
-    integrationService.notifyToPrepare(purchaseOrder);
+      PurchaseOrder purchaseOrder = findPurchaseOrderById(cart.get().getPurchaseOrderId());
+      purchaseOrder.setPurchaseOrderItems(purchaseOrderItems);
+      //Notifica cozinha
+      integrationService.notifyToPrepare(purchaseOrder);
 
-
+    });
 
   }
 
@@ -72,8 +76,8 @@ public class PurchaseOrderService {
     purchaseOrder.getChannel().close(purchaseOrder);
   }
 
-  public void save(PurchaseOrder purchaseOrder) {
-    purchaseOrderDao.save(purchaseOrder);
+  public void updateState(PurchaseOrder purchaseOrder) {
+    purchaseOrderDao.updateState(purchaseOrder);
   }
 
   public List<PurchaseOrderItem> findPurchaseOrderItemsByPurchaseOrderId(UUID purchaseOrderId) {

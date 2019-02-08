@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -34,9 +35,16 @@ public class CartService {
     cartInMemory.set(cartId,cart);
   }
 
-  public Cart findCartById(UUID cartId) {
+  public Optional<Cart> findCartById(UUID cartId) {
     IMap<UUID, Cart> cartInMemory = cartInstance.getMap("cart");
-    return cartInMemory.get(cartId);
+    return Optional.ofNullable(cartInMemory.get(cartId));
+  }
+
+  public Optional<Cart> findCartByIdAndDeleteCart(UUID cartId) {
+    IMap<UUID, Cart> cartInMemory = cartInstance.getMap("cart");
+    Cart cart = cartInMemory.get(cartId);
+    cartInMemory.removeAsync(cartId);
+    return Optional.ofNullable(cart);
   }
 
   private Cart buildCart(UUID purchaseOrderId) {

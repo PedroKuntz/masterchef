@@ -11,6 +11,7 @@ import com.ello.masterchef.sales.service.PurchaseOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -35,8 +36,12 @@ public class IntegrationService {
     paymentService.createPaymentOrder(purchaseOrder);
   }
 
-  public Cart findCartById(UUID cartId) {
+  public Optional<Cart> findCartById(UUID cartId) {
     return cartService.findCartById(cartId);
+  }
+
+  public Optional<Cart> findCartByIdAndDeleteCart(UUID cartId) {
+    return cartService.findCartByIdAndDeleteCart(cartId);
   }
 
   public void notifyToPrepare(PurchaseOrder purchaseOrder) {
@@ -47,8 +52,12 @@ public class IntegrationService {
     return catalogService.findById(catalogItemId);
   }
 
-  public void savePurchaseOrder(PurchaseOrder purchaseOrder) {
-    purchaseOrderService.save(purchaseOrder);
+  public void updatePurchaseOrderState(PurchaseOrder purchaseOrder) {
+    purchaseOrderService.updateState(purchaseOrder);
+  }
+
+  public void sendPurchaseOrderByCartId(UUID cartId) {
+    purchaseOrderService.sendPurchaseOrder(cartId);
   }
 
 }

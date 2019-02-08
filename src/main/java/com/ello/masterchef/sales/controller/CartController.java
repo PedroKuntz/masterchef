@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @RestController
@@ -31,7 +32,7 @@ public class CartController {
 
   @GetMapping(value = "/{cartId}")
   public ResponseEntity<?> findByCartId(@RequestParam("cartId") UUID cartId) {
-    Cart cart = cartService.findCartById(cartId);
+    Optional<Cart> cart = cartService.findCartById(cartId);
     return new ResponseEntity(cart,HttpStatus.OK);
   }
 

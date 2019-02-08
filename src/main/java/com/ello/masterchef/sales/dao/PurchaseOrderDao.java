@@ -34,6 +34,13 @@ public class PurchaseOrderDao {
       purchaseOrder.getTotalPrice());
   }
 
+  @Transactional
+  public void updateState(PurchaseOrder purchaseOrder) {
+    jdbcTemplate.update("UPDATE purchase_order SET purchase_order_state = ? WHERE purchase_order_id = ?",
+      purchaseOrder.getPurchaseOrderState().getValue(),
+      purchaseOrder.getPurchaseId());
+  }
+
   public List<PurchaseOrder> findAll() {
     return jdbcTemplate.query(FIND_ALL_PURCHASE_ORDER, new PurchaseOrderRowMapper());
   }
