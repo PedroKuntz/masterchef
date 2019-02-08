@@ -10,8 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.UUID;
 
-import static com.ello.masterchef.sales.dao.SalesQueryLanguage.FIND_ALL_PURCHASE_ORDER;
-import static com.ello.masterchef.sales.dao.SalesQueryLanguage.FIND_PURCHASE_ORDER_BY_ID;
+import static com.ello.masterchef.sales.dao.SalesQueryUtils.FIND_ALL_PURCHASE_ORDER;
+import static com.ello.masterchef.sales.dao.SalesQueryUtils.FIND_PURCHASE_ORDER_BY_ID;
 
 @Repository
 public class PurchaseOrderDao {

@@ -2,7 +2,7 @@ package com.ello.masterchef.sales.model;
 
 import com.ello.masterchef.commons.model.State;
 
-import static com.ello.masterchef.integration.StateConstants.CLOSED_ORDER_STATE;
+import static com.ello.masterchef.integration.model.StateConstants.CLOSED_ORDER_STATE;
 
 public class ClosedOrderState implements State<PurchaseOrder> {
 

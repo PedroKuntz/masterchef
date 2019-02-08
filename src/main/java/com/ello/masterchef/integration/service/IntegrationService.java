@@ -1,4 +1,4 @@
-package com.ello.masterchef.integration;
+package com.ello.masterchef.integration.service;
 
 import com.ello.masterchef.catalog.model.CatalogItem;
 import com.ello.masterchef.catalog.service.CatalogService;

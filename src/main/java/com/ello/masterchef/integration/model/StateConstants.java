@@ -1,4 +1,4 @@
-package com.ello.masterchef.integration;
+package com.ello.masterchef.integration.model;
 
 public class StateConstants {
 

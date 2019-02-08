@@ -9,9 +9,9 @@ import com.ello.masterchef.sales.model.PurchaseOrder;
 import com.ello.masterchef.sales.model.PurchaseOrderItem;
 import com.ello.masterchef.sales.model.ReceivedOrderItemState;
 
-import static com.ello.masterchef.integration.StateConstants.DELIVERY_ORDER_ITEM_STATE;
-import static com.ello.masterchef.integration.StateConstants.IN_PROGRESS_ORDER_ITEM_STATE;
-import static com.ello.masterchef.integration.StateConstants.OPENED_ORDER_STATE;
+import static com.ello.masterchef.integration.model.StateConstants.DELIVERY_ORDER_ITEM_STATE;
+import static com.ello.masterchef.integration.model.StateConstants.IN_PROGRESS_ORDER_ITEM_STATE;
+import static com.ello.masterchef.integration.model.StateConstants.OPENED_ORDER_STATE;
 
 public class SalesStateMapper {
 

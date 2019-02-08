@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.UUID;
 
-import static com.ello.masterchef.sales.dao.SalesQueryLanguage.FIND_ALL_PURCHASE_ORDER_ITEM_BY_PURCHASE_ORDER_ID;
+import static com.ello.masterchef.sales.dao.SalesQueryUtils.FIND_ALL_PURCHASE_ORDER_ITEM_BY_PURCHASE_ORDER_ID;
 
 @Repository
 public class PurchaseOrderItemDao {

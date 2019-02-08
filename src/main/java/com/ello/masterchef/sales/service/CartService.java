@@ -3,7 +3,6 @@ package com.ello.masterchef.sales.service;
 import com.ello.masterchef.sales.model.Cart;
 import com.ello.masterchef.sales.model.PurchaseOrderItemDraft;
 import com.hazelcast.core.HazelcastInstance;
-import com.hazelcast.core.IList;
 import com.hazelcast.core.IMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

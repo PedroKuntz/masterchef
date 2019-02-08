@@ -1,6 +1,6 @@
 package com.ello.masterchef.sales.dao;
 
-public class SalesQueryLanguage {
+public class SalesQueryUtils {
 
   protected static final String FIND_ALL_PURCHASE_ORDER =
     "SELECT " +

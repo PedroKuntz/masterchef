@@ -2,6 +2,8 @@ package com.ello.masterchef.payment.model;
 
 import com.ello.masterchef.commons.model.State;
 
+import static com.ello.masterchef.integration.model.StateConstants.OPENED_ORDER_STATE;
+
 public class OpenedPaymentOrderState implements State<PaymentOrder> {
     @Override
     public void next(PaymentOrder paymentOrder) {
@@ -20,6 +22,6 @@ public class OpenedPaymentOrderState implements State<PaymentOrder> {
 
     @Override
     public String getValue() {
-        return null;
+        return OPENED_ORDER_STATE;
     }
 }

@@ -1,8 +1,7 @@
 package com.ello.masterchef.sales.service;
 
 import com.ello.masterchef.catalog.model.CatalogItem;
-import com.ello.masterchef.catalog.service.CatalogService;
-import com.ello.masterchef.integration.IntegrationService;
+import com.ello.masterchef.integration.service.IntegrationService;
 import com.ello.masterchef.sales.dao.PrinterDao;
 import com.ello.masterchef.sales.model.PurchaseOrder;
 import com.ello.masterchef.sales.model.PurchaseOrderItem;
@@ -51,6 +50,7 @@ public class PrinterService {
         IQueue<CatalogItem> printQueue = cartInstance.getQueue("print");
         printQueue.remove(catalogItem);
         printerDao.delete(catalogItem);
+        //Notify PurchaseOrderItem ->
     }
 
     private void addQueue(CatalogItem catalogItem) {

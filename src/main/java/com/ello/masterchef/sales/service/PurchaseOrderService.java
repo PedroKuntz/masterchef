@@ -1,6 +1,6 @@
 package com.ello.masterchef.sales.service;
 
-import com.ello.masterchef.integration.IntegrationService;
+import com.ello.masterchef.integration.service.IntegrationService;
 import com.ello.masterchef.sales.dao.PurchaseOrderDao;
 import com.ello.masterchef.sales.dao.PurchaseOrderItemDao;
 import com.ello.masterchef.sales.model.*;
@@ -63,7 +63,12 @@ public class PurchaseOrderService {
 
   public void preClosedPurchaseOrder(UUID purchaseOrderId) {
     PurchaseOrder purchaseOrder = purchaseOrderDao.findById(purchaseOrderId);
+    integrationService.createPaymentOrder(purchaseOrder);
+  }
 
+  public void ClosePurchaseOrder(PurchaseOrder purchaseOrder) {
+    purchaseOrder.setPurchaseOrderState(new ClosedOrderState());
+    purchaseOrderDao.save(purchaseOrder);
   }
 
   public List<PurchaseOrderItem> findPurchaseOrderItemsByPurchaseOrderId(UUID purchaseOrderId) {

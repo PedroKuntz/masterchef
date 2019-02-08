@@ -2,7 +2,6 @@ package com.ello.masterchef.payment.model;
 
 import com.ello.masterchef.commons.model.Entity;
 import com.ello.masterchef.commons.model.State;
-import com.ello.masterchef.sales.model.PurchaseOrder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +10,7 @@ import java.util.UUID;
 public class PaymentOrder implements Entity {
 
     private UUID paymentOrderId;
-    private PurchaseOrder purchaseOrderId;
+    private UUID purchaseOrderId;
     private List<Payment> payments = new ArrayList<>();
     private State<PaymentOrder> paymentOrderState;
 
@@ -25,11 +24,11 @@ public class PaymentOrder implements Entity {
         this.paymentOrderId = paymentOrderId;
     }
 
-    public PurchaseOrder getPurchaseOrderId() {
+    public UUID getPurchaseOrderId() {
         return purchaseOrderId;
     }
 
-    public void setPurchaseOrderId(PurchaseOrder purchaseOrderId) {
+    public void setPurchaseOrderId(UUID purchaseOrderId) {
         this.purchaseOrderId = purchaseOrderId;
     }
 
