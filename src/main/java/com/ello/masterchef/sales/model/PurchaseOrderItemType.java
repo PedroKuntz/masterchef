@@ -1,8 +1,8 @@
 package com.ello.masterchef.sales.model;
 
-public enum PurchaseOrderItemType {
+public enum PurchaseOrderItemType  {
 
-  UNIT("UNIT"), SUB_ITEM("SUB_ITEM"), ADDITIONAL("ADDITIONAL"), REFIL("REFIL"), COMBO("COMBO"), FREE("FREE");
+  UNIT("UNIT"), SUB_ITEM("SUB_ITEM"), ADDITIONAL("ADDITIONAL"), KIT("KIT"), FREE("FREE");
 
   private String value;
 
@@ -13,4 +13,5 @@ public enum PurchaseOrderItemType {
   public String getValue() {
     return value;
   }
+
 }

@@ -16,35 +16,39 @@ import java.util.UUID;
 @Service
 public class IntegrationService {
 
-    private final PurchaseOrderService purchaseOrderService;
-    private final CartService cartService;
-    private final PrinterService printerService;
-    private final CatalogService catalogService;
-    private final PaymentService paymentService;
+  private final PurchaseOrderService purchaseOrderService;
+  private final CartService cartService;
+  private final PrinterService printerService;
+  private final CatalogService catalogService;
+  private final PaymentService paymentService;
 
-    @Autowired
-    public IntegrationService(PurchaseOrderService purchaseOrderService, CartService cartService, PrinterService printerService, CatalogService catalogService, PaymentService paymentService) {
-        this.purchaseOrderService = purchaseOrderService;
-        this.cartService = cartService;
-        this.printerService = printerService;
-        this.catalogService = catalogService;
-        this.paymentService = paymentService;
-    }
+  @Autowired
+  public IntegrationService(PurchaseOrderService purchaseOrderService, CartService cartService, PrinterService printerService, CatalogService catalogService, PaymentService paymentService) {
+    this.purchaseOrderService = purchaseOrderService;
+    this.cartService = cartService;
+    this.printerService = printerService;
+    this.catalogService = catalogService;
+    this.paymentService = paymentService;
+  }
 
-    public void createPaymentOrder(PurchaseOrder purchaseOrder) {
-        paymentService.createPaymentOrder(purchaseOrder);
-    }
+  public void createPaymentOrder(PurchaseOrder purchaseOrder) {
+    paymentService.createPaymentOrder(purchaseOrder);
+  }
 
-    public Cart findCartById(UUID cartId) {
-        return cartService.findCartById(cartId);
-    }
+  public Cart findCartById(UUID cartId) {
+    return cartService.findCartById(cartId);
+  }
 
-    public void notifyToPrepare(PurchaseOrder purchaseOrder) {
-        printerService.notifyToPrepare(purchaseOrder);
-    }
+  public void notifyToPrepare(PurchaseOrder purchaseOrder) {
+    printerService.notifyToPrepare(purchaseOrder);
+  }
 
-    public CatalogItem findById(UUID catalogItemId) {
-        return catalogService.findById(catalogItemId);
-    }
+  public CatalogItem findById(UUID catalogItemId) {
+    return catalogService.findById(catalogItemId);
+  }
+
+  public void savePurchaseOrder(PurchaseOrder purchaseOrder) {
+    purchaseOrderService.save(purchaseOrder);
+  }
 
 }

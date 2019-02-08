@@ -59,20 +59,29 @@ public class PurchaseOrderService {
     //Notifica cozinha
     integrationService.notifyToPrepare(purchaseOrder);
 
+
+
   }
 
   public void preClosedPurchaseOrder(UUID purchaseOrderId) {
     PurchaseOrder purchaseOrder = purchaseOrderDao.findById(purchaseOrderId);
-    integrationService.createPaymentOrder(purchaseOrder);
+    purchaseOrder.getChannel().preClose(purchaseOrder);
   }
 
   public void ClosePurchaseOrder(PurchaseOrder purchaseOrder) {
-    purchaseOrder.setPurchaseOrderState(new ClosedOrderState());
+    purchaseOrder.getChannel().close(purchaseOrder);
+  }
+
+  public void save(PurchaseOrder purchaseOrder) {
     purchaseOrderDao.save(purchaseOrder);
   }
 
   public List<PurchaseOrderItem> findPurchaseOrderItemsByPurchaseOrderId(UUID purchaseOrderId) {
     return purchaseOrderItemDao.findPurchaseOrderItemsByPurchaseOrderId(purchaseOrderId);
+  }
+
+  private PurchaseOrder findPurchaseOrderById(UUID purchaseOrderId) {
+    return this.purchaseOrderDao.findById(purchaseOrderId);
   }
 
   private PurchaseOrder buildPurchaseOrder(PurchaseOrderRequest purchaseOrderRequest) {
@@ -99,10 +108,6 @@ public class PurchaseOrderService {
     purchaseOrderItem.setPurchaseOrderItemParentId(parentId);
     this.purchaseOrderItemDao.save(cart.getPurchaseOrderId(),purchaseOrderItem);
     return purchaseOrderItem;
-  }
-
-  private PurchaseOrder findPurchaseOrderById(UUID purchaseOrderId) {
-    return this.purchaseOrderDao.findById(purchaseOrderId);
   }
 
 }

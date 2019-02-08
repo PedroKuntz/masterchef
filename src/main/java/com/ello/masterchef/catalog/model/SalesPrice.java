@@ -1,6 +1,7 @@
 package com.ello.masterchef.catalog.model;
 
 import com.ello.masterchef.commons.model.Entity;
+import com.ello.masterchef.sales.model.Channel;
 
 import java.util.UUID;
 

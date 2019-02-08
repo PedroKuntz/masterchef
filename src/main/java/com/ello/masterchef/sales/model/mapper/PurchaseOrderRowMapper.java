@@ -1,6 +1,6 @@
 package com.ello.masterchef.sales.model.mapper;
 
-import com.ello.masterchef.catalog.model.Channel;
+import com.ello.masterchef.sales.model.Channel;
 import com.ello.masterchef.sales.model.PurchaseOrder;
 import com.ello.masterchef.sales.model.PurchaseOrderType;
 import org.springframework.jdbc.core.RowMapper;

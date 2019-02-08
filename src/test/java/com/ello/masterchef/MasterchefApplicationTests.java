@@ -2,7 +2,7 @@ package com.ello.masterchef;
 
 import com.ello.masterchef.catalog.model.CatalogItem;
 import com.ello.masterchef.catalog.model.CatalogItemType;
-import com.ello.masterchef.catalog.model.Channel;
+import com.ello.masterchef.sales.model.Channel;
 import com.ello.masterchef.catalog.model.SalesPrice;
 import com.ello.masterchef.catalog.model.SalesRules;
 import org.junit.Test;
@@ -25,7 +25,7 @@ public class MasterchefApplicationTests {
 
 		SalesPrice salesPrice = new SalesPrice();
 		salesPrice.setSalesPriceId(UUID.randomUUID());
-		salesPrice.setChannel(Channel.FREE);
+		salesPrice.setChannel(Channel.ORDER);
 		salesPrice.setSalesRules(salesRules);
 		salesPrice.setPrice(64.9);
 

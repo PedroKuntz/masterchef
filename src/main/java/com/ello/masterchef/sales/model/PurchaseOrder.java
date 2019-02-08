@@ -1,6 +1,5 @@
 package com.ello.masterchef.sales.model;
 
-import com.ello.masterchef.catalog.model.Channel;
 import com.ello.masterchef.commons.model.Entity;
 import com.ello.masterchef.commons.model.State;
 
@@ -89,5 +88,13 @@ public class PurchaseOrder implements Entity {
   public PurchaseOrder setTotalPrice(Double totalPrice) {
     this.totalPrice = totalPrice;
     return this;
+  }
+
+  public void nextState() {
+    this.purchaseOrderState.next(this);
+  }
+
+  public void prevState() {
+    this.purchaseOrderState.prev(this);
   }
 }

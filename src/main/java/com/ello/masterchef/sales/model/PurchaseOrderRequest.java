@@ -1,6 +1,5 @@
 package com.ello.masterchef.sales.model;
 
-import com.ello.masterchef.catalog.model.Channel;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
