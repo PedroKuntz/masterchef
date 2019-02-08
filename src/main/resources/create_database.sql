@@ -55,6 +55,7 @@ CREATE TABLE `chef`.`purchase_order` (
   `purchase_order_id` VARCHAR(200) NOT NULL,
   `employee_id` VARCHAR(200) NOT NULL,
   `purchase_order_type` VARCHAR(200) NOT NULL,
+  `channel_id` VARCHAR(200) NOT NULL,
   `channel` VARCHAR(200) NOT NULL,
   `purchase_order_state` VARCHAR(200) NOT NULL,
   `total_price` DOUBLE NOT NULL,
@@ -71,3 +72,22 @@ CREATE TABLE `chef`.`purchase_order_item` (
   `amount` INT NULL,
   `kg` DOUBLE NULL,
   PRIMARY KEY (`purchase_order_item_id`));
+
+
+-- PAYMENT
+
+CREATE TABLE `chef`.`payment_order` (
+  `payment_order_id` VARCHAR(200) NOT NULL,
+  `purchase_order_id` VARCHAR(200) NOT NULL,
+  `payment_order_state` VARCHAR(200) NOT NULL,
+  `total_value` DOUBLE NOT NULL,
+  `reduce_value` DOUBLE NOT NULL,
+  `increment_value` DOUBLE NOT NULL,
+  `tax` DOUBLE NOT NULL,
+  PRIMARY KEY (`payment_order_id`));
+
+CREATE TABLE `chef`.`payment` (
+  `payment_id` VARCHAR(200) NOT NULL,
+  `payment_method` VARCHAR(200) NOT NULL,
+  `value` VARCHAR(200) NOT NULL,
+  PRIMARY KEY (`payment_id`));

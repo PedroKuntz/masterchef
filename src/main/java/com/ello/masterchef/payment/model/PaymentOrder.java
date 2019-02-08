@@ -13,6 +13,10 @@ public class PaymentOrder implements Entity {
     private UUID purchaseOrderId;
     private List<Payment> payments = new ArrayList<>();
     private State<PaymentOrder> paymentOrderState;
+    private Double totalValue;
+    private Double reduceValue;
+    private Double incrementValue;
+    private Double tax;
 
     public PaymentOrder() {}
 
@@ -46,5 +50,41 @@ public class PaymentOrder implements Entity {
 
     public void setPaymentOrderState(State<PaymentOrder> paymentOrderState) {
         this.paymentOrderState = paymentOrderState;
+    }
+
+    public Double getTotalValue() {
+        return totalValue;
+    }
+
+    public PaymentOrder setTotalValue(Double totalValue) {
+        this.totalValue = totalValue;
+        return this;
+    }
+
+    public Double getReduceValue() {
+        return reduceValue;
+    }
+
+    public PaymentOrder setReduceValue(Double reduceValue) {
+        this.reduceValue = reduceValue;
+        return this;
+    }
+
+    public Double getIncrementValue() {
+        return incrementValue;
+    }
+
+    public PaymentOrder setIncrementValue(Double incrementValue) {
+        this.incrementValue = incrementValue;
+        return this;
+    }
+
+    public Double getTax() {
+        return tax;
+    }
+
+    public PaymentOrder setTax(Double tax) {
+        this.tax = tax;
+        return this;
     }
 }

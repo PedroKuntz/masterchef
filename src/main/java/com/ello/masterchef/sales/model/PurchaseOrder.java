@@ -12,6 +12,7 @@ public class PurchaseOrder implements Entity {
   private UUID employeeId;
   private List<PurchaseOrderItem> purchaseOrderItems;
   private PurchaseOrderType purchaseOrderType;
+  private String channelIdentifier;
   private Channel channel;
   private State<PurchaseOrder> purchaseOrderState;
   private Double totalPrice;
@@ -51,6 +52,15 @@ public class PurchaseOrder implements Entity {
 
   public PurchaseOrder setPurchaseOrderType(PurchaseOrderType purchaseOrderType) {
     this.purchaseOrderType = purchaseOrderType;
+    return this;
+  }
+
+  public String getChannelIdentifier() {
+    return channelIdentifier;
+  }
+
+  public PurchaseOrder setChannelIdentifier(String channelIdentifier) {
+    this.channelIdentifier = channelIdentifier;
     return this;
   }
 

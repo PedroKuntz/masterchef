@@ -20,6 +20,7 @@ public class PurchaseOrderRowMapper implements RowMapper<PurchaseOrder> {
     purchaseOrder.setEmployee(UUID.fromString(row.getString("employee_id")));
     purchaseOrder.setPurchaseOrderState(purchaseOrderStateTo(row.getString("purchase_order_state")));
     purchaseOrder.setPurchaseOrderType(PurchaseOrderType.valueOf(row.getString("purchase_order_type")));
+    purchaseOrder.setChannelIdentifier(row.getString("channel_id"));
     purchaseOrder.setChannel(Channel.valueOf(row.getString("channel")));
     purchaseOrder.setTotalPrice(row.getDouble("total_price"));
     return purchaseOrder;

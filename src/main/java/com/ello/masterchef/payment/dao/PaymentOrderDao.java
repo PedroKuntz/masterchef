@@ -12,22 +12,22 @@ import static com.ello.masterchef.payment.dao.PaymentQueryUtils.FIND_BY_PURCHASE
 @Repository
 public class PaymentOrderDao {
 
-    private final JdbcTemplate jdbcTemplate;
+  private final JdbcTemplate jdbcTemplate;
 
-    public PaymentOrderDao(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-    }
+  public PaymentOrderDao(JdbcTemplate jdbcTemplate) {
+    this.jdbcTemplate = jdbcTemplate;
+  }
 
-    public void save(PaymentOrder paymentOrder) {
+  public void save(PaymentOrder paymentOrder) {
+    jdbcTemplate.update("INSERT INTO payment_order VALUES (?,?,?,?,?)")
+  }
 
-    }
+  public void update(PaymentOrder paymentOrder) {
 
-    public void update(PaymentOrder paymentOrder) {
+  }
 
-    }
-
-    public PaymentOrder findByPurchaseOrderId(UUID purchaseOrderId) {
-        return jdbcTemplate.queryForObject(FIND_BY_PURCHASE_ORDER_ID, new UUID[]{purchaseOrderId}, new PaymentOrderRowMapper());
-    }
+  public PaymentOrder findByPurchaseOrderId(UUID purchaseOrderId) {
+    return jdbcTemplate.queryForObject(FIND_BY_PURCHASE_ORDER_ID, new UUID[]{purchaseOrderId}, new PaymentOrderRowMapper());
+  }
 
 }

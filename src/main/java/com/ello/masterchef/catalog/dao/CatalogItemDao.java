@@ -1,7 +1,6 @@
 package com.ello.masterchef.catalog.dao;
 
 import com.ello.masterchef.catalog.model.CatalogItem;
-import com.ello.masterchef.catalog.model.mapper.CatalogItemRowMapper;
 import com.ello.masterchef.catalog.model.mapper.CompactCatalogItemRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
