@@ -1,6 +1,7 @@
 package com.ello.masterchef.sales.service;
 
 import com.ello.masterchef.integration.service.IntegrationService;
+import com.ello.masterchef.payment.model.PaymentOrder;
 import com.ello.masterchef.sales.model.Cart;
 import com.ello.masterchef.sales.model.PurchaseOrder;
 import com.ello.masterchef.sales.model.PurchaseOrderItem;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 import static com.ello.masterchef.integration.model.StateConstants.CLOSED_ORDER_STATE;
+import static com.ello.masterchef.integration.model.StateConstants.OPENED_ORDER_STATE;
 import static com.ello.masterchef.integration.model.StateConstants.RECEIVED_ORDER_ITEM_STATE;
 
 @Service
@@ -39,6 +41,10 @@ public class GenericChannelStrategy implements ChannelStrategy {
       throw new CloseOrderException("O Item " + purchaseOrderItemsNotReceived.get().getPurchaseOrderItemId() + " não está entregue! Favor, providenciar a entrega do item para que possa fazer o pré-fechamento!");
     }
 
+    PaymentOrder paymentOrder = integrationService.findByPurchaseOrderId(purchaseOrder.getPurchaseId());
+    if (paymentOrder.getPaymentOrderState().getValue().equalsIgnoreCase(OPENED_ORDER_STATE)) {
+      throw new CloseOrderException("Ordem de pagamento ainda não está fechada!");
+    }
 
     purchaseOrder.nextState();
     integrationService.updatePurchaseOrderState(purchaseOrder);

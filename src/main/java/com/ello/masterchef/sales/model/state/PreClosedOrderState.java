@@ -1,4 +1,4 @@
-package com.ello.masterchef.sales.model;
+package com.ello.masterchef.sales.model.state;
 
 import com.ello.masterchef.commons.model.State;
 

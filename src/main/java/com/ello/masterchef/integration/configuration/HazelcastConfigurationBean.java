@@ -15,4 +15,10 @@ public class HazelcastConfigurationBean {
      return Hazelcast.newHazelcastInstance();
   }
 
+  @Bean
+  @Qualifier(value = "channelControl")
+  public HazelcastInstance channelControl() {
+    return Hazelcast.newHazelcastInstance();
+  }
+
 }

@@ -1,6 +1,7 @@
-package com.ello.masterchef.sales.model;
+package com.ello.masterchef.sales.model.state;
 
 import com.ello.masterchef.commons.model.State;
+import com.ello.masterchef.sales.model.PurchaseOrderItem;
 
 import static com.ello.masterchef.integration.model.StateConstants.RECEIVED_ORDER_ITEM_STATE;
 
@@ -15,7 +16,7 @@ public class ReceivedOrderItemState implements State<PurchaseOrderItem> {
 
   @Override
   public void prev(PurchaseOrderItem purchaseOrderItem) {
-
+    purchaseOrderItem.setPurchaseOrderItemState(new DeliveryOrderItemState());
   }
 
   @Override

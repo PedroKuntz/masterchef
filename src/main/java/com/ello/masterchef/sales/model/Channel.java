@@ -1,65 +1,10 @@
 package com.ello.masterchef.sales.model;
 
-import com.ello.masterchef.sales.service.ChannelStrategy;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum Channel implements ChannelStrategy {
+public enum Channel {
 
-  TABLE("TABLE") {
-    @Override
-    public void preClose(PurchaseOrder purchaseOrder) {
-
-    }
-
-    @Override
-    public void close(PurchaseOrder purchaseOrder) {
-
-    }
-  }, BALCONY("BALCONY") {
-
-    @Override
-    public void preClose(PurchaseOrder purchaseOrder) {
-
-    }
-
-    @Override
-    public void close(PurchaseOrder purchaseOrder) {
-
-    }
-  }, CARD("CARD") {
-
-    @Override
-    public void preClose(PurchaseOrder purchaseOrder) {
-
-    }
-
-    @Override
-    public void close(PurchaseOrder purchaseOrder) {
-
-    }
-  }, DELIVERY("DELIVERY") {
-
-    @Override
-    public void preClose(PurchaseOrder purchaseOrder) {
-
-    }
-
-    @Override
-    public void close(PurchaseOrder purchaseOrder) {
-
-    }
-  }, ORDER("ORDER") {
-
-    @Override
-    public void preClose(PurchaseOrder purchaseOrder) {
-
-    }
-
-    @Override
-    public void close(PurchaseOrder purchaseOrder) {
-
-    }
-  };
+  TABLE("TABLE"), BALCONY("BALCONY"), CARD("CARD"), DELIVERY("DELIVERY"), ORDER("ORDER");
 
   private String value;
 

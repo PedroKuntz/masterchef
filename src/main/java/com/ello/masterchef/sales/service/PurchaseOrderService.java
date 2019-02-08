@@ -4,6 +4,8 @@ import com.ello.masterchef.integration.service.IntegrationService;
 import com.ello.masterchef.sales.dao.PurchaseOrderDao;
 import com.ello.masterchef.sales.dao.PurchaseOrderItemDao;
 import com.ello.masterchef.sales.model.*;
+import com.ello.masterchef.sales.model.state.InProgressOrderItemState;
+import com.ello.masterchef.sales.model.state.OpenedOrderState;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,6 +1,7 @@
-package com.ello.masterchef.sales.model;
+package com.ello.masterchef.sales.model.state;
 
 import com.ello.masterchef.commons.model.State;
+import com.ello.masterchef.sales.model.PurchaseOrderItem;
 
 import static com.ello.masterchef.integration.model.StateConstants.DELIVERY_ORDER_ITEM_STATE;
 

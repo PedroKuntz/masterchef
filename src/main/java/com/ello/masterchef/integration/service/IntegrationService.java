@@ -2,6 +2,7 @@ package com.ello.masterchef.integration.service;
 
 import com.ello.masterchef.catalog.model.CatalogItem;
 import com.ello.masterchef.catalog.service.CatalogService;
+import com.ello.masterchef.payment.model.PaymentOrder;
 import com.ello.masterchef.payment.service.PaymentService;
 import com.ello.masterchef.sales.model.Cart;
 import com.ello.masterchef.sales.model.PurchaseOrder;
@@ -32,10 +33,16 @@ public class IntegrationService {
     this.paymentService = paymentService;
   }
 
+  //PAYMENT
   public void createPaymentOrder(PurchaseOrder purchaseOrder) {
     paymentService.createPaymentOrder(purchaseOrder);
   }
 
+  public PaymentOrder findByPurchaseOrderId(UUID purchaseOrderId) {
+    return paymentService.findByPurchaseOrderId(purchaseOrderId);
+  }
+
+  // CART
   public Optional<Cart> findCartById(UUID cartId) {
     return cartService.findCartById(cartId);
   }
@@ -44,14 +51,17 @@ public class IntegrationService {
     return cartService.findCartByIdAndDeleteCart(cartId);
   }
 
+  //PRINT
   public void notifyToPrepare(PurchaseOrder purchaseOrder) {
     printerService.notifyToPrepare(purchaseOrder);
   }
 
+  //CATALOG
   public CatalogItem findById(UUID catalogItemId) {
     return catalogService.findById(catalogItemId);
   }
 
+  //SALES - PURCHASE_ORDER
   public void updatePurchaseOrderState(PurchaseOrder purchaseOrder) {
     purchaseOrderService.updateState(purchaseOrder);
   }
