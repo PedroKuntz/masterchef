@@ -1,6 +1,7 @@
 package com.ello.masterchef.sales.model.state;
 
 import com.ello.masterchef.commons.model.State;
+import com.ello.masterchef.sales.model.PurchaseOrder;
 
 public class PreClosedOrderState implements State<PurchaseOrder> {
     @Override

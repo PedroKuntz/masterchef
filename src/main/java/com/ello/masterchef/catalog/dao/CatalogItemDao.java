@@ -28,7 +28,7 @@ public class CatalogItemDao {
   }
 
   public CatalogItem findById(UUID catalogItemId) {
-    return jdbcTemplate.queryForObject("SELECT catalog_item_id, item_id, name_item, description, catalog_item_type, level FROM chef.catalog_item WHERE catalog_item_id = ?",new UUID[] {catalogItemId}, new CompactCatalogItemRowMapper())
+    return jdbcTemplate.queryForObject("SELECT catalog_item_id, item_id, name_item, description, catalog_item_type, level FROM chef.catalog_item WHERE catalog_item_id = ?",new UUID[] {catalogItemId}, new CompactCatalogItemRowMapper());
   }
 
 }

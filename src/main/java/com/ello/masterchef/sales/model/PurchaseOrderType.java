@@ -4,10 +4,9 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum PurchaseOrderType {
 
-  BALCONY("BALCAO"),
-  TABLE("MESA"),
-  DELIVERY("ENTREGA"),
-  CARD("COMANDA");
+  DRINK("DRINK"),
+  BURGER("BURGER"),
+  PIZZA("PIZZA");
 
   private String value;
 

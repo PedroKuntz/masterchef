@@ -7,11 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -30,7 +30,7 @@ public class PurchaseOrderController {
   }
 
   @PutMapping(value = "/send/{cart_id}")
-  public ResponseEntity<?> sendPurchaseOrder(@RequestParam("cart_id") UUID cartId) {
+  public ResponseEntity<?> sendPurchaseOrder(@PathVariable("cart_id") UUID cartId) {
     purchaseOrderService.sendPurchaseOrder(cartId);
     return new ResponseEntity(HttpStatus.CREATED);
   }
@@ -41,7 +41,7 @@ public class PurchaseOrderController {
   }
 
   @GetMapping(value = "/{purchaseOrderId}/purchaseOrderItems")
-  public ResponseEntity<?> getAllItemsByPurchaseOrderId(@RequestParam("purchaseOrderId") UUID purchaseOrderId) {
+  public ResponseEntity<?> getAllItemsByPurchaseOrderId(@PathVariable("purchaseOrderId") UUID purchaseOrderId) {
     List<PurchaseOrderItem> purchaseOrderItems = purchaseOrderService.findPurchaseOrderItemsByPurchaseOrderId(purchaseOrderId);
     return new ResponseEntity(purchaseOrderItems, HttpStatus.OK);
   }

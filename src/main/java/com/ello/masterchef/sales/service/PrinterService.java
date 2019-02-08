@@ -1,7 +1,7 @@
 package com.ello.masterchef.sales.service;
 
 import com.ello.masterchef.catalog.model.CatalogItem;
-import com.ello.masterchef.integration.service.IntegrationService;
+import com.ello.masterchef.catalog.service.CatalogService;
 import com.ello.masterchef.sales.dao.PrinterDao;
 import com.ello.masterchef.sales.model.PurchaseOrder;
 import com.ello.masterchef.sales.model.PurchaseOrderItem;
@@ -18,14 +18,14 @@ public class PrinterService {
 
     private final HazelcastInstance cartInstance;
     private final PrinterDao printerDao;
-    private final IntegrationService integrationService;
+    private final CatalogService catalogService;
 
     @Autowired
     public PrinterService(@Qualifier("shoppingCart") HazelcastInstance cartInstance,
                           PrinterDao printerDao,
-                          IntegrationService integrationService) {
+                          CatalogService catalogService) {
         this.cartInstance = cartInstance;
-        this.integrationService = integrationService;
+        this.catalogService = catalogService;
         this.printerDao = printerDao;
     }
 
@@ -33,7 +33,7 @@ public class PrinterService {
         Optional<CatalogItem> catalogItem = purchaseOrder.getPurchaseOrderItems()
                 .stream()
                 .map(PurchaseOrderItem::getCatalogItemId)
-                .map(catalogItemId -> integrationService.findById(catalogItemId))
+                .map(catalogItemId -> catalogService.findById(catalogItemId))
                 .findAny();
         catalogItem.ifPresent(item -> {
             addQueue(item);
@@ -49,7 +49,7 @@ public class PrinterService {
     public void removeItemInQueue(CatalogItem catalogItem) {
         IQueue<CatalogItem> printQueue = cartInstance.getQueue("print");
         printQueue.remove(catalogItem);
-        printerDao.delete(catalogItem);
+        //printerDao.delete(catalogItem);
         //Notify PurchaseOrderItem ->
     }
 
@@ -59,7 +59,7 @@ public class PrinterService {
     }
 
     private void persistQueue(CatalogItem catalogItem) {
-        printerDao.save(catalogItem);
+        //printerDao.save(catalogItem);
     }
 
 }

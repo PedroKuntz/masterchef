@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,20 +26,20 @@ public class CartController {
   private CartService cartService;
 
   @PostMapping(value = "/{purchaseOrderId}")
-  public ResponseEntity<?> createCart(@RequestParam("purchaseOrderId")UUID purchaseOrderId) {
+  public ResponseEntity<?> createCart(@PathVariable("purchaseOrderId")UUID purchaseOrderId) {
     Cart cart = cartService.createCart(purchaseOrderId);
     return new ResponseEntity(cart, HttpStatus.CREATED);
   }
 
   @GetMapping(value = "/{cartId}")
-  public ResponseEntity<?> findByCartId(@RequestParam("cartId") UUID cartId) {
+  public ResponseEntity<?> findByCartId(@PathVariable("cartId") UUID cartId) {
     Optional<Cart> cart = cartService.findCartById(cartId);
     return new ResponseEntity(cart,HttpStatus.OK);
   }
 
 
   @PutMapping(value = "/{cartId}/addItem")
-  public ResponseEntity<?> addItem(@RequestParam("cartId") UUID cartId, @RequestBody PurchaseOrderItemDraft purchaseOrderItemDraft) {
+  public ResponseEntity<?> addItem(@PathVariable("cartId") UUID cartId, @RequestBody PurchaseOrderItemDraft purchaseOrderItemDraft) {
     cartService.addCatalogItemInCart(cartId, purchaseOrderItemDraft);
     return new ResponseEntity(HttpStatus.OK);
   }

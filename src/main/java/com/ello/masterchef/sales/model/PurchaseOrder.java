@@ -107,4 +107,18 @@ public class PurchaseOrder implements Entity {
   public void prevState() {
     this.purchaseOrderState.prev(this);
   }
+
+  @Override
+  public String toString() {
+    return "PurchaseOrder{" +
+      "purchaseId=" + purchaseId.toString() +
+      ", employeeId=" + employeeId.toString() +
+      ", purchaseOrderItems=" + purchaseOrderItems.toString() +
+      ", purchaseOrderType=" + purchaseOrderType.getValue() +
+      ", channelIdentifier='" + channelIdentifier + '\'' +
+      ", channel=" + channel.getValue() +
+      ", purchaseOrderState=" + purchaseOrderState.getValue() +
+      ", totalPrice=" + totalPrice +
+      '}';
+  }
 }

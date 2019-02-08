@@ -90,4 +90,18 @@ public class PurchaseOrderItem implements Entity {
     this.kg = kg;
     return this;
   }
+
+  @Override
+  public String toString() {
+    return "PurchaseOrderItem{" +
+      "purchaseOrderItemId=" + purchaseOrderItemId.toString() +
+      ", catalogItemId=" + catalogItemId.toString() +
+      ", purchaseOrderItemState=" + purchaseOrderItemState.getValue() +
+      ", purchaseOrderItemType=" + purchaseOrderItemType.getValue() +
+      ", purchaseOrderItemParentId=" + purchaseOrderItemParentId.toString() +
+      ", price=" + price +
+      ", amount=" + amount +
+      ", kg=" + kg +
+      '}';
+  }
 }

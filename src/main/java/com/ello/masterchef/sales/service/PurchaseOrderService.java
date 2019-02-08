@@ -1,9 +1,13 @@
 package com.ello.masterchef.sales.service;
 
-import com.ello.masterchef.integration.service.IntegrationService;
 import com.ello.masterchef.sales.dao.PurchaseOrderDao;
 import com.ello.masterchef.sales.dao.PurchaseOrderItemDao;
-import com.ello.masterchef.sales.model.*;
+import com.ello.masterchef.sales.model.Cart;
+import com.ello.masterchef.sales.model.PurchaseOrder;
+import com.ello.masterchef.sales.model.PurchaseOrderItem;
+import com.ello.masterchef.sales.model.PurchaseOrderItemDraft;
+import com.ello.masterchef.sales.model.PurchaseOrderItemType;
+import com.ello.masterchef.sales.model.PurchaseOrderRequest;
 import com.ello.masterchef.sales.model.state.InProgressOrderItemState;
 import com.ello.masterchef.sales.model.state.OpenedOrderState;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,15 +27,17 @@ public class PurchaseOrderService {
 
   private final PurchaseOrderDao purchaseOrderDao;
   private final PurchaseOrderItemDao purchaseOrderItemDao;
-  private final IntegrationService integrationService;
+  private final CartService cartService;
+  private final PrinterService printerService;
 
   @Autowired
   public PurchaseOrderService(PurchaseOrderDao purchaseOrderDao,
                               PurchaseOrderItemDao purchaseOrderItemDao,
-                              IntegrationService integrationService) {
+                              CartService cartService, PrinterService printerService) {
     this.purchaseOrderDao = purchaseOrderDao;
     this.purchaseOrderItemDao = purchaseOrderItemDao;
-    this.integrationService = integrationService;
+    this.cartService = cartService;
+    this.printerService = printerService;
   }
 
   public List<PurchaseOrder> findAll() {
@@ -47,7 +53,7 @@ public class PurchaseOrderService {
   public void sendPurchaseOrder(UUID cartId) {
     List<PurchaseOrderItem> purchaseOrderItems = new ArrayList<>();
     //Get Cart in Hazelcast
-    Optional<Cart> cart = integrationService.findCartByIdAndDeleteCart(cartId);
+    Optional<Cart> cart = cartService.findCartByIdAndDeleteCart(cartId);
     cart.ifPresent(c -> {
 
       c.getPurchaseOrderItemDraftList()
@@ -63,19 +69,10 @@ public class PurchaseOrderService {
       PurchaseOrder purchaseOrder = findPurchaseOrderById(cart.get().getPurchaseOrderId());
       purchaseOrder.setPurchaseOrderItems(purchaseOrderItems);
       //Notifica cozinha
-      integrationService.notifyToPrepare(purchaseOrder);
+      printerService.notifyToPrepare(purchaseOrder);
 
     });
 
-  }
-
-  public void preClosedPurchaseOrder(UUID purchaseOrderId) {
-    PurchaseOrder purchaseOrder = purchaseOrderDao.findById(purchaseOrderId);
-    purchaseOrder.getChannel().preClose(purchaseOrder);
-  }
-
-  public void ClosePurchaseOrder(PurchaseOrder purchaseOrder) {
-    purchaseOrder.getChannel().close(purchaseOrder);
   }
 
   public void updateState(PurchaseOrder purchaseOrder) {

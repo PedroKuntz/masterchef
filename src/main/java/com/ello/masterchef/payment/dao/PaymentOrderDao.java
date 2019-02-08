@@ -1,6 +1,7 @@
 package com.ello.masterchef.payment.dao;
 
 import com.ello.masterchef.payment.model.PaymentOrder;
+import com.ello.masterchef.payment.model.mapper.PaymentOrderJoinPaymentRowMapper;
 import com.ello.masterchef.payment.model.mapper.PaymentOrderRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.UUID;
 
 import static com.ello.masterchef.payment.dao.PaymentQueryUtils.FIND_BY_PURCHASE_ORDER_ID;
+import static com.ello.masterchef.payment.dao.PaymentQueryUtils.FIND_COMPLETE_BY_PURCHASE_ORDER_ID;
 
 @Repository
 public class PaymentOrderDao {
@@ -37,6 +39,10 @@ public class PaymentOrderDao {
 
   public PaymentOrder findByPurchaseOrderId(UUID purchaseOrderId) {
     return jdbcTemplate.queryForObject(FIND_BY_PURCHASE_ORDER_ID, new UUID[]{purchaseOrderId}, new PaymentOrderRowMapper());
+  }
+
+  public PaymentOrder findPaymentOrderCompleteByPurchaseOrderId(UUID purchaseOrderId) {
+    return jdbcTemplate.queryForObject(FIND_COMPLETE_BY_PURCHASE_ORDER_ID, new UUID[]{purchaseOrderId}, new PaymentOrderJoinPaymentRowMapper());
   }
 
 }

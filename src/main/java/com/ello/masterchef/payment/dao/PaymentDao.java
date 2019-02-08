@@ -9,22 +9,18 @@ import java.util.UUID;
 @Repository
 public class PaymentDao {
 
-    private final JdbcTemplate jdbcTemplate;
+  private final JdbcTemplate jdbcTemplate;
 
-    public PaymentDao(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-    }
+  public PaymentDao(JdbcTemplate jdbcTemplate) {
+    this.jdbcTemplate = jdbcTemplate;
+  }
 
-    public void save(UUID paymentOrderId, Payment payment) {
-        jdbcTemplate.update("INSERT INTO payment (payment_id, payment_order_id, payment_method, value) VALUES (?,?,?,?)",
-          payment.getPaymentId(),
-          paymentOrderId,
-          payment.getPaymentMethod(),
-          payment.getValue());
-    }
-
-    public void update(Payment payment) {
-
-    }
+  public void save(UUID paymentOrderId, Payment payment) {
+    jdbcTemplate.update("INSERT INTO payment (payment_id, payment_order_id, payment_method, value) VALUES (?,?,?,?)",
+      payment.getPaymentId(),
+      paymentOrderId,
+      payment.getPaymentMethod(),
+      payment.getValue());
+  }
 
 }

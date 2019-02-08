@@ -5,6 +5,7 @@ import com.ello.masterchef.payment.model.OpenedPaymentOrderState;
 import com.ello.masterchef.payment.model.Payment;
 import com.ello.masterchef.payment.model.PaymentOrder;
 import com.ello.masterchef.sales.model.PurchaseOrder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
@@ -12,27 +13,30 @@ import java.util.UUID;
 @Service
 public class PaymentService {
 
-    private final PaymentOrderDao paymentOrderDao;
-    private final Payment payment;
+  private final PaymentOrderDao paymentOrderDao;
 
-    public PaymentService(PaymentOrderDao paymentOrderDao, Payment payment) {
-        this.paymentOrderDao = paymentOrderDao;
-        this.payment = payment;
-    }
+  @Autowired
+  public PaymentService(PaymentOrderDao paymentOrderDao) {
+    this.paymentOrderDao = paymentOrderDao;
+  }
 
-    public void createPaymentOrder(PurchaseOrder purchaseOrder) {
-        PaymentOrder paymentOrder = new PaymentOrder();
-        paymentOrder.setPaymentOrderId(UUID.randomUUID());
-        paymentOrder.setPurchaseOrderId(purchaseOrder.getPurchaseId());
-        paymentOrder.setPaymentOrderState(new OpenedPaymentOrderState());
-    }
+  public void createPaymentOrder(PurchaseOrder purchaseOrder) {
+    PaymentOrder paymentOrder = new PaymentOrder();
+    paymentOrder.setPaymentOrderId(UUID.randomUUID());
+    paymentOrder.setPurchaseOrderId(purchaseOrder.getPurchaseId());
+    paymentOrder.setPaymentOrderState(new OpenedPaymentOrderState());
+  }
 
-    public PaymentOrder findByPurchaseOrderId(UUID purchaseOrderId) {
-        return paymentOrderDao.findByPurchaseOrderId(purchaseOrderId);
-    }
+  public PaymentOrder findByPurchaseOrderId(UUID purchaseOrderId) {
+    return paymentOrderDao.findByPurchaseOrderId(purchaseOrderId);
+  }
 
-    public void addPaymentInPaymentOrder(UUID paymentOrder, Payment payment) {
+  public PaymentOrder findPaymentOrderCompleteByPurchaseOrderId(UUID purchaseOrderId) {
+    return paymentOrderDao.findPaymentOrderCompleteByPurchaseOrderId(purchaseOrderId);
+  }
 
-    }
+  public void addPaymentInPaymentOrder(UUID paymentOrder, Payment payment) {
+
+  }
 
 }
